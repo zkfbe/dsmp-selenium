@@ -1,7 +1,7 @@
 import time
 import ddddocr
 from selenium import webdriver
-from selenium.webdriver import ActionChains, Keys
+from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 # 1、创建Chrome实例 。
 driver = webdriver.Chrome()
@@ -12,7 +12,7 @@ dd1 = driver.find_element(by=By.ID, value='details-button')
 dd1.click()
 dd2 = driver.find_element(by=By.ID, value='proceed-link')
 dd2.click()
-time.sleep(1)
+time.sleep(2)
 nsadmin=driver.find_element(By.XPATH,'/html/body/div/div/div/div/form/button[2]')
 nsadmin.click()
 nsname=driver.find_element(By.XPATH,'/html/body/div/div/div/div/form/div[3]/div/div/div/div/span/input')
@@ -28,7 +28,7 @@ code = driver.find_element(by=By.ID, value='verify_code')  # 验证码输入框�
 submit=driver.find_element(By.XPATH,'/html/body/div/div/div/div/form/div[2]/button[2]')
 # 以下为识别验证码的代码
 while(driver.current_url=="https://192.168.142.200/login"):
-    code.send_keys(Keys.CONTROL+'a')
+    code.send_keys(Keys.CONTROL + 'a')
     code.send_keys(Keys.BACKSPACE)
     imgCode.screenshot("code.png")  # 将验证码截图，保存为code.png
     ocr = ddddocr.DdddOcr()
@@ -39,26 +39,12 @@ while(driver.current_url=="https://192.168.142.200/login"):
     submit.click()
     imgCode.click()
     time.sleep(1)
-setting=driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/header[2]/div/div/div[3]/div/div/div/div[2]')
-setting.click()
-time.sleep(2)
-driver.find_element(By.XPATH,"//span[contains(text(),'系统管理')]").click()
-time.sleep(1)
-driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div[1]/div/div[2]/div[2]/div[2]').click()
-time.sleep(1)
-driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div[2]/div/div/div[2]/div[2]/button').click()
-time.sleep(1)
-modalContainer = driver.find_element(By.CLASS_NAME,"ant-modal-content")
-driver.find_element(By.XPATH,'//div[2]/form/div[2]/div/div[2]/div/div/input').send_keys("SCA")
-driver.find_element(By.XPATH,'//div[2]/form/div[3]/div/div[2]/div/div/input').send_keys("1.1.0")
-time.sleep(2)
-driver.find_element(By.XPATH,'//div[2]/form/div[5]/div/div[2]/div/div/input').send_keys("192.168.121.200")
-driver.find_element(By.XPATH,'//div[2]/form/div[6]/div/div[2]/div/div/div/div[2]/input').send_keys("443")
-driver.find_element(By.XPATH,'//div[2]/form/div[7]/div/div[2]/div/div/input').send_keys("6675395b47811d2b7c7a8c73")
-driver.find_element(By.XPATH,'//div[2]/form/div[8]/div/div[2]/div/div/input').send_keys("209f2cbc-440e-4bec-a419-4ad3b441c6f2")
-driver.find_element(By.XPATH,'//div[2]/form/div[9]/div/div/div/div/div/button[2]').click()
-time.sleep(1)
-driver.find_element(By.XPATH,'//div[2]/form/div[9]/div/div/div/div/div/button[3]').click()
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/header[2]/div/div/div[2]/ul/li[2]/span/a').click()
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div[1]/div[2]/div/div[1]/div/div/button[2]').click()
+time.sleep(5)
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[1]/div/div[2]/div/div/span/input').send_keys("project2")
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[6]/div/div[2]/div/div/span/input').send_keys("1.1.0")
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[10]/button[1]').click()
 time.sleep(3)
 # 4、退出访问的实例网站。
 driver.quit()

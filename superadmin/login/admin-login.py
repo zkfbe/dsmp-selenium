@@ -1,6 +1,7 @@
 import time
 import ddddocr
 from selenium import webdriver
+from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 # 1、创建Chrome实例 。
 driver = webdriver.Chrome()
@@ -22,6 +23,8 @@ code = driver.find_element(by=By.ID, value='verify_code')  # 验证码输入框�
 submit=driver.find_element(By.XPATH,'/html/body/div/div/div/div/form/button[1]')
 # 以下为识别验证码的代码
 while(driver.current_url=="https://192.168.142.200/login"):
+    code.send_keys(Keys.CONTROL + 'a')
+    code.send_keys(Keys.BACKSPACE)
     imgCode.screenshot("code.png")  # 将验证码截图，保存为code.png
     ocr = ddddocr.DdddOcr()
     with open("code.png", "rb") as fp:
@@ -29,7 +32,6 @@ while(driver.current_url=="https://192.168.142.200/login"):
     catch = ocr.classification(image)  # 验证码返回给catch
     code.send_keys(catch)  # 将识别到的验证码输入到框内
     submit.click()
-    code.clear()
     imgCode.click()
     time.sleep(1)
 time.sleep(2)
