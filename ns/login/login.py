@@ -39,6 +39,7 @@ while(driver.current_url=="https://192.168.142.200/login"):
     submit.click()
     imgCode.click()
     time.sleep(1)
-time.sleep(2)
+
+time.sleep(3)
 # 4、退出访问的实例网站。
 driver.quit()
