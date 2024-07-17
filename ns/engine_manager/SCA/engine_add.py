@@ -41,7 +41,7 @@ while(driver.current_url=="https://192.168.142.200/login"):
     time.sleep(1)
 setting=driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/header[2]/div/div/div[3]/div/div/div/div[2]')
 setting.click()
-time.sleep(2)
+time.sleep(1)
 driver.find_element(By.XPATH,"//span[contains(text(),'系统管理')]").click()
 time.sleep(1)
 driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div[1]/div/div[2]/div[2]/div[2]').click()
@@ -49,9 +49,24 @@ time.sleep(1)
 driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div[2]/div/div/div[2]/div[2]/button').click()
 time.sleep(1)
 modalContainer = driver.find_element(By.CLASS_NAME,"ant-modal-content")
+driver.find_element(By.XPATH,'//div[2]/form/div[1]/div/div[2]/div/div/div/div').click()
+time.sleep(1)
+elements=driver.find_elements(By.CLASS_NAME,"ant-select-item-option-content")
+for element in elements:
+    text=element.get_attribute("innerText")
+    if "SCA" in text:
+        element.click()
+        break
 driver.find_element(By.XPATH,'//div[2]/form/div[2]/div/div[2]/div/div/input').send_keys("SCA")
-driver.find_element(By.XPATH,'//div[2]/form/div[3]/div/div[2]/div/div/input').send_keys("1.1.0")
-time.sleep(2)
+driver.find_element(By.XPATH,'//div[2]/form/div[3]/div/div[2]/div/div/input').send_keys("1.0.0")
+time.sleep(1)
+driver.find_element(By.XPATH,'//div[2]/form/div[4]/div/div[2]/div/div/div/div').click()
+elements=driver.find_elements(By.CLASS_NAME,"ant-select-item-option-content")
+time.sleep(1)
+for element in elements:
+    if element.get_attribute("innerText") == "HTTPS":
+        element.click()
+        break
 driver.find_element(By.XPATH,'//div[2]/form/div[5]/div/div[2]/div/div/input').send_keys("192.168.121.200")
 driver.find_element(By.XPATH,'//div[2]/form/div[6]/div/div[2]/div/div/div/div[2]/input').send_keys("443")
 driver.find_element(By.XPATH,'//div[2]/form/div[7]/div/div[2]/div/div/input').send_keys("6675395b47811d2b7c7a8c73")

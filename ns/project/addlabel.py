@@ -2,6 +2,7 @@ import time
 import ddddocr
 from selenium import webdriver
 from selenium.webdriver import Keys
+from selenium.webdriver.common import action_chains
 from selenium.webdriver.common.by import By
 # 1、创建Chrome实例 。
 driver = webdriver.Chrome()
@@ -43,8 +44,10 @@ driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/header[2]/div/di
 time.sleep(1)
 driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div[2]/div/div[1]/div[3]/div[1]/div[3]/div/button').click()
 time.sleep(1)
-driver.find_element(By.ID,'tag').send_keys('111')
+driver.find_element(By.ID,'tag').send_keys('222')
 time.sleep(1)
-driver.find_element(By.XPATH,"//span[contains(text(),'确定')]").click()
+driver.find_element(By.XPATH,"//*[@id='tag']/../../../../../../../../../../div[2]/button[2]").click()
+time.sleep(1)
+driver.find_element(By.CSS_SELECTOR,'#root > div > section > div > main > div > div.ant-spin-nested-loading > div > div.card_item___3N9w4.ms-main > div.card_item_footer___1v4LL > div:nth-child(1) > div.ms-tips.card_item_tag___3Nchg > div > div > div:nth-child(1) > svg ').click()
 time.sleep(3)
 driver.quit()

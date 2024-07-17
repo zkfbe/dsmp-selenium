@@ -39,33 +39,22 @@ while(driver.current_url=="https://192.168.142.200/login"):
     submit.click()
     imgCode.click()
     time.sleep(1)
+time.sleep(1)
 driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/header[2]/div/div/div[2]/ul/li[2]/span/a').click()
 time.sleep(1)
-driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div[1]/div[2]/div/div[1]/div/div/button[2]').click()
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div[2]/div/div[1]/div[1]/div[2]/button[2]').click()
 time.sleep(1)
-driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[1]/div/div[2]/div/div/span/input').send_keys("project2")
-time.sleep(1)
-driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[2]/div/div[2]/div/div/div/div/span[1]/input').click()
-time.sleep(1)
-elements=driver.find_elements(By.CLASS_NAME, 'ant-cascader-menu-item-content')
-for element in elements:
-        element.get_attribute('innerText')=="lzq3"
-        element.click()
-        break
-time.sleep(1)
+driver.find_element(By.XPATH,'/html/body/div/div/section/div/main/div[2]/div/form/div[1]/div/div[2]/div/div/input').send_keys("project3-1.2.0-1")
 driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[3]/div/div[2]/div/div/div/div/span[1]/input').click()
-time.sleep(1)
-elements=driver.find_elements(By.CLASS_NAME, 'ant-select-item-option-content')
+elements=driver.find_elements(By.CLASS_NAME,'ant-select-item-option-content')
 for element in elements:
-    if element.get_attribute("innerText") == "admin":
+    if element.get_attribute("innerText") == "SAST(192.168.142.181)":
         element.click()
-        break
-time.sleep(1)
-driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[4]/div/div[2]/div/div/div/textarea').send_keys('项目描述')
-driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[6]/div/div[2]/div/div/span/input').send_keys("1.1.0")
-driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[9]/div/div[2]/div/div/div/textarea').send_keys('版本描述')
-time.sleep(1)
-driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[10]/button[1]').click()
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[4]/div[1]/div[2]/div/div[2]/div/div/input').send_keys('https://gitee.com/xiazhangmin/go-admin.git')
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[4]/div[1]/div[3]/div/div[2]/div/div/input').send_keys('xiazhangmin')
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[4]/div[1]/div[4]/div/div[2]/div/div/span/input').send_keys('qwe120')
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[4]/div[1]/div[5]/div/div[2]/div/div/div/div/span[1]/input').send_keys('master')
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[6]/button[1]').click()
 time.sleep(3)
-# 4、退出访问的实例网站。
+
 driver.quit()
