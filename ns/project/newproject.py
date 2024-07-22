@@ -1,4 +1,6 @@
 import time
+import random
+
 import ddddocr
 from selenium import webdriver
 from selenium.webdriver import Keys
@@ -28,7 +30,7 @@ code = driver.find_element(by=By.ID, value='verify_code')  # 验证码输入框�
 submit=driver.find_element(By.XPATH,'/html/body/div/div/div/div/form/div[2]/button[2]')
 # 以下为识别验证码的代码
 while(driver.current_url=="https://192.168.142.200/login"):
-    code.send_keys(Keys.CONTROL + 'a')
+    code.send_keys(Keys.COMMAND + 'a')
     code.send_keys(Keys.BACKSPACE)
     imgCode.screenshot("code.png")  # 将验证码截图，保存为code.png
     ocr = ddddocr.DdddOcr()
@@ -39,11 +41,12 @@ while(driver.current_url=="https://192.168.142.200/login"):
     submit.click()
     imgCode.click()
     time.sleep(1)
+time.sleep(1)
 driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/header[2]/div/div/div[2]/ul/li[2]/span/a').click()
 time.sleep(1)
 driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div[1]/div[2]/div/div[1]/div/div/button[2]').click()
 time.sleep(1)
-driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[1]/div/div[2]/div/div/span/input').send_keys("project2")
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[1]/div/div[2]/div/div/span/input').send_keys("project-"+''.join(random.choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', k=4)))
 time.sleep(1)
 driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[2]/div/div[2]/div/div/div/div/span[1]/input').click()
 time.sleep(1)
@@ -66,6 +69,49 @@ driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/
 driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[9]/div/div[2]/div/div/div/textarea').send_keys('版本描述')
 time.sleep(1)
 driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[10]/button[1]').click()
+time.sleep(3)
+time.sleep(1)
+# 4、退出访问的实例网站。
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div[2]/div/div[1]/div[1]/div[2]/div/button').click()
+time.sleep(1)
+driver.find_element(By.XPATH,'//div/div/ul/li[2]/span/div').click()
+time.sleep(1)
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/div/div[1]/button').click()
+time.sleep(1)
+name=driver.find_element(By.XPATH,'//div[2]/form/div[1]/div/div[2]/div/div/span/input')
+name.send_keys(Keys.COMMAND + 'a')
+name.send_keys(Keys.BACKSPACE)
+name.send_keys('project-'+''.join(random.choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', k=4)))
+time.sleep(1)
+driver.find_element(By.XPATH,'//div[3]/div/div/div[3]/div/button[2]').click()
+time.sleep(1)
+driver.find_element(By.XPATH,'//main/div[2]/div/div/div[5]/div/div/div[1]/div[2]/div/div/button').click()
+time.sleep(1)
+number=driver.find_element(By.ID,'version_name')
+number.send_keys('1.2.0')
+time.sleep(1)
+driver.find_element(By.XPATH,'//div/div[3]/div/div/div[3]/div/button[2]').click()
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/header[2]/div/div/div[2]/ul/li[2]/span/a').click()
+time.sleep(3)
+time.sleep(1)
+# 4、退出访问的实例网站。
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div[2]/div/div[1]/div[3]/div[1]/div[3]/div/button').click()
+time.sleep(1)
+driver.find_element(By.ID,'tag').send_keys('222')
+time.sleep(1)
+driver.find_element(By.XPATH,"//*[@id='tag']/../../../../../../../../../../div[2]/button[2]").click()
+time.sleep(1)
+driver.find_element(By.CSS_SELECTOR,'#root > div > section > div > main > div > div.ant-spin-nested-loading > div > div.card_item___3N9w4.ms-main > div.card_item_footer___1v4LL > div:nth-child(1) > div.ms-tips.card_item_tag___3Nchg > div > div > div:nth-child(1) > svg ').click()
+time.sleep(3)
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div[1]/div[1]/div[1]/div[1]/div/div[2]/div').click()
+time.sleep(1)
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div[1]/div[1]/div[1]/div[1]/div/div[1]/div').click()
+time.sleep(1)
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div[2]/div/div[1]/div[1]/div[2]/div/button').click()
+time.sleep(2)
+driver.find_element(By.XPATH,'//div/div/ul/li[1]/span/div').click()
+time.sleep(1)
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div[1]/div[1]/div[1]/div[1]/div/div[2]/div').click()
 time.sleep(3)
 # 4、退出访问的实例网站。
 driver.quit()

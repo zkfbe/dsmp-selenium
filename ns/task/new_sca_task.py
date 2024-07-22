@@ -1,3 +1,4 @@
+import random
 import time
 import ddddocr
 from selenium import webdriver
@@ -44,12 +45,13 @@ driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/header[2]/div/di
 time.sleep(1)
 driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div[2]/div/div[1]/div[1]/div[2]/button[2]').click()
 time.sleep(1)
-driver.find_element(By.XPATH,'/html/body/div/div/section/div/main/div[2]/div/form/div[1]/div/div[2]/div/div/input').send_keys("project3-1.2.0-1")
+driver.find_element(By.XPATH,'/html/body/div/div'
+                             '/section/div/main/div[2]/div/form/div[1]/div/div[2]/div/div/input').send_keys("project-"+''.join(random.choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', k=4)))
 driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[3]/div/div[2]/div/div/div/div/span[1]/input').click()
 time.sleep(1)
 elements=driver.find_elements(By.CLASS_NAME,'ant-select-item-option-content')
 for element in elements:
-    if element.get_attribute("innerText") == "SAST(192.168.142.181)":
+    if element.get_attribute("innerText") == "SCA(192.168.121.200)":
         element.click()
         break
 time.sleep(1)

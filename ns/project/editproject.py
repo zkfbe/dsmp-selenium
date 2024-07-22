@@ -28,7 +28,7 @@ code = driver.find_element(by=By.ID, value='verify_code')  # 验证码输入框�
 submit=driver.find_element(By.XPATH,'/html/body/div/div/div/div/form/div[2]/button[2]')
 # 以下为识别验证码的代码
 while(driver.current_url=="https://192.168.142.200/login"):
-    code.send_keys(Keys.CONTROL + 'a')
+    code.send_keys(Keys.COMMAND + 'a')
     code.send_keys(Keys.BACKSPACE)
     imgCode.screenshot("code.png")  # 将验证码截图，保存为code.png
     ocr = ddddocr.DdddOcr()

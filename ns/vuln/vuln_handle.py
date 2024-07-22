@@ -28,7 +28,7 @@ code = driver.find_element(by=By.ID, value='verify_code')  # 验证码输入框�
 submit=driver.find_element(By.XPATH,'/html/body/div/div/div/div/form/div[2]/button[2]')
 # 以下为识别验证码的代码
 while(driver.current_url=="https://192.168.142.200/login"):
-    code.send_keys(Keys.CONTROL + 'a')
+    code.send_keys(Keys.COMMAND + 'a')
     code.send_keys(Keys.BACKSPACE)
     imgCode.screenshot("code.png")  # 将验证码截图，保存为code.png
     ocr = ddddocr.DdddOcr()
@@ -251,6 +251,8 @@ driver.find_element(By.ID,'comment').send_keys('111')
 time.sleep(1)
 driver.find_element(By.XPATH,"//*[@id='comment']/../../../../../../../../../div[3]/div/button[2]").click()
 time.sleep(1)
+driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/header[2]/div/div/div[3]/div/div/div/div[3]/div').click()
+time.sleep(2)
 driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div/div[2]/div[3]/div[1]/div/div/div/div/div/table/tbody/tr[2]/td[15]/div/button[1]').click()
 time.sleep(10)
 # 4、退出访问的实例网站。

@@ -1,4 +1,5 @@
 import time
+import random
 import ddddocr
 from selenium import webdriver
 from selenium.webdriver import ActionChains, Keys
@@ -24,7 +25,7 @@ code = driver.find_element(by=By.ID, value='verify_code')  # 验证码输入框�
 submit=driver.find_element(By.XPATH,'/html/body/div/div/div/div/form/button[1]')
 # 以下为识别验证码的代码
 while(driver.current_url=="https://192.168.142.200/login"):
-    code.send_keys(Keys.CONTROL + 'a')
+    code.send_keys(Keys.COMMAND + 'a')
     code.send_keys(Keys.BACKSPACE)
     imgCode.screenshot("code.png")  # 将验证码截图，保存为code.png
     ocr = ddddocr.DdddOcr()
@@ -35,12 +36,12 @@ while(driver.current_url=="https://192.168.142.200/login"):
     submit.click()
     imgCode.click()
     time.sleep(1)
-time.sleep(2)
+time.sleep(1)
 newns=driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div/div[2]/div[1]/button')
 newns.click()
 time.sleep(1)
 newns_nsname=driver.find_element(By.ID,"ns")
-newns_nsname.send_keys("lzq06")
+newns_nsname.send_keys("lzq-"+''.join(random.choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', k=4)))
 newns_admin=driver.find_element(By.ID,'username')
 newns_admin.send_keys("admin")
 newns_password=driver.find_element(By.ID,'password')
@@ -50,6 +51,33 @@ newns_confirmpass.send_keys("Jtwmy@dt4gx")
 modalContainer = driver.find_element(By.CLASS_NAME,"ant-modal-content")
 newns_submit=modalContainer.find_element(By.XPATH,'.//div[3]/button[2]')
 newns_submit.click()
+time.sleep(2)
+reset_password=driver.find_element(By.CSS_SELECTOR,'#root > div > section > div > main > div > div > div.tenant_list_wrap___2brkp > div.table_wrapper___Wk3xD > div > div > div > div > div > div > div > div > table > tbody > tr:nth-child(1) > td:nth-child(5) > button:nth-child(1)')
+reset_password.click()
+time.sleep(1)
+modalContainer = driver.find_element(By.CLASS_NAME,"ant-modal-content")
+admin_password=modalContainer.find_element(By.XPATH,"//div[1]/div[1]/div[2]/div[1]/div/span/input")
+admin_password.send_keys('Jtwmy@dt4gx')
+new_password=driver.find_element(By.XPATH,"//div[2]/div[1]/div[2]/div[1]/div/span/input")
+new_password.send_keys('Jtwmy@dt4gx1')
+confirm_password=driver.find_element(By.XPATH,"//div[3]/div[1]/div[2]/div[1]/div/span/input")
+confirm_password.send_keys('Jtwmy@dt4gx1')
+imgCode = driver.find_element(By.XPATH, "//div[4]/div[2]/img")  # 验证码图片位置
+code = driver.find_element(by=By.ID, value='verify_code')  # 验证码输入框位置
+imgCode.screenshot("code.png")  # 将验证码截图，保存为code.png
+ocr = ddddocr.DdddOcr()
+with open("code.png", "rb") as fp:
+    image = fp.read()
+catch = ocr.classification(image)  # 验证码返回给catch
+code.send_keys(catch)  # 将识别到的验证码输入到框内
+submit=driver.find_element(By.XPATH,"//div[2]/div/div[2]/div[3]/button[2]")
+submit.click()
+time.sleep(2)
+delete_button=driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div/div/div[2]/div[2]/div/div/div/div/div/div/div/div/table/tbody/tr[1]/td[5]/button[2]')
+delete_button.click()
+modalContainer = driver.find_element(By.CLASS_NAME,"ant-modal-content")
+delete_confirm=driver.find_element(By.XPATH,'//div/div/div[2]/button[2]')
+delete_confirm.click()
 time.sleep(3)  # 延迟3秒
 # 4、退出访问的实例网站。
 driver.quit()
