@@ -75,7 +75,7 @@ driver.find_element(By.XPATH,'//div[2]/form/div[6]/div/div[2]/div/div/div/div[2]
 driver.find_element(By.XPATH,'//div[2]/form/div[7]/div/div[2]/div/div/input').send_keys("6675395b47811d2b7c7a8c73")
 driver.find_element(By.XPATH,'//div[2]/form/div[8]/div/div[2]/div/div/input').send_keys("209f2cbc-440e-4bec-a419-4ad3b441c6f2")
 driver.find_element(By.XPATH,'//div[2]/form/div[9]/div/div/div/div/div/button[2]').click()
-time.sleep(1)
+time.sleep(5)
 driver.find_element(By.XPATH,'//div[2]/form/div[9]/div/div/div/div/div/button[3]').click()
 time.sleep(3)
 # 4、退出访问的实例网站。

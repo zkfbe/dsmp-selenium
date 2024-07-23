@@ -59,6 +59,7 @@ driver.find_element(By.ID,'task_path').send_keys('https://gitee.com/xiazhangmin/
 driver.find_element(By.ID,'task_username').send_keys('xiazhangmin')
 driver.find_element(By.ID,'task_passwd').send_keys('qwe120')
 driver.find_element(By.ID,'task_branch').send_keys('master')
+time.sleep(5)
 driver.find_element(By.XPATH,'/html/body/div[1]/div/section/div/main/div[2]/div/form/div[6]/button[1]').click()
 time.sleep(3)
 
