@@ -1,7 +1,6 @@
+#!/usr/bin/env python3
 import time
-import pymongo
 import ddddocr
-from pymongo import MongoClient
 from selenium import webdriver
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
@@ -14,23 +13,18 @@ dd1 = driver.find_element(by=By.ID, value='details-button')
 dd1.click()
 dd2 = driver.find_element(by=By.ID, value='proceed-link')
 dd2.click()
-time.sleep(2)
-nsadmin=driver.find_element(By.XPATH,'/html/body/div/div/div/div/form/button[2]')
-nsadmin.click()
-nsname=driver.find_element(By.XPATH,'/html/body/div/div/div/div/form/div[3]/div/div/div/div/span/input')
-nsname.send_keys('lzq3')
-next=driver.find_element(By.XPATH,'/html/body/div/div/div/div/form/button[1]')
-next.click()
-name = driver.find_element(By.ID, 'username')  # 账号输入框位置
+time.sleep(1)
+name = driver.find_element(By.XPATH, '/html/body/div/div/div/div/form/div[3]/div/div/div/div/span/input')  # 账号输入框位置
 name.send_keys("admin")  # 输入你的账号
 pwd = driver.find_element(by=By.ID, value='password')  # 密码输入框位置
 pwd.send_keys("Jtwmy@dt4gx")  # 输入你的密码
 imgCode = driver.find_element(By.CLASS_NAME, "code___1wGtw")  # 验证码图片位置
 code = driver.find_element(by=By.ID, value='verify_code')  # 验证码输入框位置
-submit=driver.find_element(By.XPATH,'/html/body/div/div/div/div/form/div[2]/button[2]')
+#time.sleep(1)
+submit=driver.find_element(By.XPATH,'/html/body/div/div/div/div/form/button[1]')
 # 以下为识别验证码的代码
 while(driver.current_url=="https://192.168.142.200/login"):
-    code.send_keys(Keys.COMMAND + 'a')
+    code.send_keys(Keys.CONTROL + 'a')
     code.send_keys(Keys.BACKSPACE)
     imgCode.screenshot("code.png")  # 将验证码截图，保存为code.png
     ocr = ddddocr.DdddOcr()
@@ -41,8 +35,6 @@ while(driver.current_url=="https://192.168.142.200/login"):
     submit.click()
     imgCode.click()
     time.sleep(1)
-
-time.sleep(15)
-
+time.sleep(2)
 # 4、退出访问的实例网站。
 driver.quit()

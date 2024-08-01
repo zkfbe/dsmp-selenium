@@ -62,7 +62,7 @@ driver.find_element(By.XPATH,'//main/div[2]/form/div/div[2]/div[2]/div/div[3]/di
 time.sleep(1)
 driver.find_element(By.XPATH,'//div[2]/div/div[2]/div[2]/label[3]/span[2]/div[1]').click()
 driver.find_element(By.XPATH,'//div/div[2]/div/div[2]/div[3]/button[2]').click()
-time.sleep(1)
+time.sleep(5)
 driver.find_element(By.XPATH,'//main/div[2]/form/div/div[2]/div[1]/div[2]/button[2]').click()
 time.sleep(3)
 # 4、退出访问的实例网站。

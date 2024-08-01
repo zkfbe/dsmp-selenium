@@ -62,13 +62,26 @@ new_password=driver.find_element(By.XPATH,"//div[2]/div[1]/div[2]/div[1]/div/spa
 new_password.send_keys('Jtwmy@dt4gx1')
 confirm_password=driver.find_element(By.XPATH,"//div[3]/div[1]/div[2]/div[1]/div/span/input")
 confirm_password.send_keys('Jtwmy@dt4gx1')
-imgCode = driver.find_element(By.XPATH, "//div[4]/div[2]/img")  # 验证码图片位置
 code = driver.find_element(by=By.ID, value='verify_code')  # 验证码输入框位置
-imgCode.screenshot("code.png")  # 将验证码截图，保存为code.png
 ocr = ddddocr.DdddOcr()
-with open("code.png", "rb") as fp:
-    image = fp.read()
-catch = ocr.classification(image)  # 验证码返回给catch
+while True:
+    imgCode = driver.find_element(By.XPATH, "//div[4]/div[2]/img")  # 验证码图片位置
+    imgCode.screenshot("code.png")  # 将验证码截图，保存为code.png
+    with open("code.png", "rb") as fp:
+        image = fp.read()
+    catch = ocr.classification(image)  # 验证码返回给catch
+    if len(catch)!=5:
+        imgCode.click()
+        continue
+    f=0
+    for ch in catch:
+        if not (ch<='9' and ch>='0'):
+            f=1
+            imgCode.click()
+            break
+    if f:
+        continue;
+    break
 code.send_keys(catch)  # 将识别到的验证码输入到框内
 submit=driver.find_element(By.XPATH,"//div[2]/div/div[2]/div[3]/button[2]")
 submit.click()
